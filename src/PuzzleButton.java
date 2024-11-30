@@ -7,12 +7,17 @@ public class PuzzleButton extends JButton implements ActionListener {
     private PuzzleFrame frame;
     private int row;
     private int col;
+    private Leaderboard leaderboard;
+    private String name;
+    private Time time;
 
-    public PuzzleButton(SlidePuzzleBoard b,PuzzleFrame f,int row,int col) {
+
+    public PuzzleButton(SlidePuzzleBoard b, PuzzleFrame f, int row, int col, Time time) {
         board = b;
         frame = f;
         this.row = row;
         this.col = col;
+        this.time = time;
         addActionListener(this);
     }
 
@@ -27,6 +32,11 @@ public class PuzzleButton extends JButton implements ActionListener {
         }
         if (board.gameOver()){
             frame.finish();
+            name = JOptionPane.showInputDialog("Input your name");
+            leaderboard = new Leaderboard(name, time);
+            time.stop();
+            time.reset();
+
         }
     }
 }

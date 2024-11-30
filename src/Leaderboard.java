@@ -24,8 +24,6 @@ public class Leaderboard {
             FileWriter writer = new FileWriter(file, true);
             FileReader reader = new FileReader(file);
 
-            System.out.println("file exist at " + file.getAbsolutePath());
-
             int data, count = 1;
             while ((data = reader.read()) != -1) {
                 if (data == '\n') {
@@ -33,7 +31,16 @@ public class Leaderboard {
                 }
             }
 
-            writer.write(count + ". " + name + "\t" + time.getTime() + "\n");
+            reader.close();
+
+            if (this.time == null){
+                writer.write(count + ". " + name +"\n");
+                System.out.println("this.time is null");
+            }else {
+                writer.write(count + ". " + name + "\t\t" + time.getTime() +"\n");
+                System.out.println("this.time not null");
+            }
+            writer.close();
 
             // --------------DEBUGGING--------------
             FileReader reader2 = new FileReader(file);
@@ -41,15 +48,13 @@ public class Leaderboard {
             while( (read = reader2.read()) != -1){
                 System.out.print((char)read);
             }
-
             System.out.println("ok");
-
-            writer.close();
-            reader.close();
+            reader2.close();
+            //--------------------------------------
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("end");
+        System.out.println("----------------END----------------");
     }
 }

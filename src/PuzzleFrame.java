@@ -24,7 +24,8 @@ public class PuzzleFrame extends JFrame {
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(startButton);
 
-        timer = new Time(startButton, font);
+        timer = new Time(startButton);
+        timer.setFont(font);
         JPanel timerPanel = new JPanel();
         timerPanel.add(timer);
 
@@ -34,7 +35,7 @@ public class PuzzleFrame extends JFrame {
 
         for (int row = 0; row < 4; row++) {
             for (int col = 0; col < 4; col++) {
-                button_board[row][col] = new PuzzleButton(board,this,row,col);
+                button_board[row][col] = new PuzzleButton(board,this,row,col,timer);
                 button_board[row][col].setFocusable(false);
                 button_board[row][col].setMargin(new Insets(0, 0, 0, 0));
                 gridPanel.add(button_board[row][col]);

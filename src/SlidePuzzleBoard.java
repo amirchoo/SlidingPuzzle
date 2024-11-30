@@ -45,7 +45,7 @@ public class SlidePuzzleBoard {
         }
 
         if (pieceRow != -1 && pieceCol != -1 && Math.abs(empty_row - pieceRow) + Math.abs(empty_col - pieceCol) == 1) {
-            System.out.println("Moving piece " + w + " to empty slot.");
+            //System.out.println("Moving piece " + w + " to empty slot.");
 
             board[empty_row][empty_col] = board[pieceRow][pieceCol];
             board[pieceRow][pieceCol] = null;
@@ -56,7 +56,7 @@ public class SlidePuzzleBoard {
             return true;
         }
         //JOptionPane.showMessageDialog(null,"Move invalid for piece "+w);
-        System.out.println("Move invalid for piece " + w);
+        //System.out.println("Move invalid for piece " + w);
         return false;
     }
 

@@ -19,20 +19,18 @@ public class Time extends JLabel implements ActionListener {
     Timer timer = new Timer(1000, new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            elapsedTime += 1000;  // Increment time by 1000ms (1 second)
+            elapsedTime += 1000;
             minutes = (elapsedTime / 60000) % 60;
             seconds = (elapsedTime / 1000) % 60;
 
-            // Update the label with formatted time
             minutes_string = String.format("%02d", minutes);
             seconds_string = String.format("%02d", seconds);
             setText(minutes_string + ":" + seconds_string);
         }
     });
 
-    Time(StartButton startButton, Font font) {
+    Time(StartButton startButton) {
         setText(minutes_string + ":" + seconds_string);
-        setFont(font);
         this.startButton = startButton;
         startButton.addActionListener(this);
 
@@ -40,7 +38,6 @@ public class Time extends JLabel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("button worked");
         if (e.getSource() == startButton) {
             start();
         }
@@ -50,7 +47,23 @@ public class Time extends JLabel implements ActionListener {
         timer.start();
     }
 
+    public void stop(){
+        timer.stop();
+    }
+
+    public void reset(){
+        elapsedTime = 0;
+        minutes = 0;
+        seconds = 0;
+    }
+
+
     public String getTime(){
         return String.format("%02d:%02d", minutes, seconds);
     }
+
+    public void setFont(Font font){
+        super.setFont(font);
+    }
+
 }

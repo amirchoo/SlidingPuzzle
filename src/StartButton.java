@@ -6,14 +6,15 @@ import java.awt.event.ActionListener;
 public class StartButton extends JButton implements ActionListener {
     private SlidePuzzleBoard board;
     private PuzzleFrame frame;
-    private Leaderboard leaderboard;
     private Time time;
-    private String name;
+//    private Leaderboard leaderboard;
+//    private String name;
 
     public StartButton(SlidePuzzleBoard b, PuzzleFrame f){
         super("Start");
         board = b;
         frame = f;
+        time = new Time(this);
         addActionListener(this);
         setFont(new Font("Arial",Font.BOLD,16));
 
@@ -23,10 +24,11 @@ public class StartButton extends JButton implements ActionListener {
         board.createPuzzleBoard();
         frame.update();
         this.setText("Restart");
+        time.start();
 
         //--------------TESTING---------------
-        name = JOptionPane.showInputDialog("Input your name");
-        leaderboard = new Leaderboard(name, time);
+//        name = JOptionPane.showInputDialog("Input your name");
+//        leaderboard = new Leaderboard(name, time);
 
     }
 }
